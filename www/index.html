@@ -273,6 +273,18 @@
                                     <div class="no-events" id="noReminders">No reminders set</div>
                                 </div>
                             </div>
+                            <div class="conversation-panel restaurant-panel" style="margin-top: 15px;">
+                                <div class="conversation-header">
+                                    <span>Nearby dining</span>
+                                    <span class="restaurant-location">LAX area</span>
+                                </div>
+                                <div class="restaurant-filters" role="group" aria-label="Filter nearby restaurants">
+                                    <button class="restaurant-filter active" data-filter="all">All</button>
+                                    <button class="restaurant-filter" data-filter="terminal">Terminal</button>
+                                    <button class="restaurant-filter" data-filter="nearby">Under 5 mi</button>
+                                </div>
+                                <div class="restaurant-list" id="restaurantList" aria-live="polite"></div>
+                            </div>
                         </div>
 
                         <!-- Text Input Inside Box -->

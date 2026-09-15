@@ -326,7 +326,43 @@ function canvasApp() {
 
 
 $(function () {
-	$("#slider-range").slider({
+    const nearbyRestaurants = [
+        { name: "Coni'Seafood", area: "Inglewood", distance: 5, cuisine: "Nayarit Seafood", price: "$$", rating: 4.6, status: "Open", review: "Pescado zarandeado and caramelized onions." },
+        { name: "Jame Enoteca", area: "El Segundo", distance: 5, cuisine: "Italian", price: "$$$", rating: 4.7, status: "Open", review: "Arugula pappardelle and braised beef cheek." },
+        { name: "Wolfgold", area: "LAX TBIT", distance: 0, cuisine: "Californian / Wood-Fired", price: "$$$", rating: 4.6, status: "Terminal", review: "Wood-fired pizza and seasonal salads airside." },
+        { name: "Honeybird", area: "LAX Terminal 4", distance: 0, cuisine: "Fried Chicken", price: "$$", rating: 4.4, status: "Terminal", review: "Premium chicken sandwiches and waffle fries." },
+        { name: "Playa Provisions", area: "Playa del Rey", distance: 8, cuisine: "Multi-Concept", price: "$$", rating: 4.5, status: "Open", review: "Four concepts from chef Brooke Williamson." },
+        { name: "Carnitas El Artista", area: "Inglewood", distance: 8, cuisine: "Mexican", price: "$", rating: 4.7, status: "Open", review: "Michoacán-style carnitas and chilaquiles." }
+    ];
+
+    function renderRestaurants(filter = "all") {
+        const list = document.getElementById("restaurantList");
+        if (!list) return;
+        const filtered = nearbyRestaurants.filter((restaurant) =>
+            filter === "terminal" ? restaurant.status === "Terminal" :
+            filter === "nearby" ? restaurant.distance <= 5 : true
+        );
+        list.innerHTML = filtered.map((restaurant) => `
+            <article class="restaurant-card">
+                <div class="restaurant-card-top">
+                    <span class="restaurant-name">${restaurant.name}</span>
+                    <span class="restaurant-rating">${restaurant.rating} <i class="bi bi-star-fill"></i></span>
+                </div>
+                <div class="restaurant-cuisine">${restaurant.cuisine} · ${restaurant.price}</div>
+                <div class="restaurant-card-meta"><span>${restaurant.area} · ${restaurant.distance === 0 ? "In terminal" : `${restaurant.distance} mi`}</span><span class="restaurant-status">${restaurant.status}</span></div>
+            </article>`).join("");
+    }
+
+    renderRestaurants();
+    $(document).on("click", ".restaurant-filter", function () {
+        $(".restaurant-filter").removeClass("active");
+        $(this).addClass("active");
+        renderRestaurants($(this).data("filter"));
+    });
+});
+
+$(function () {
+    $("#slider-range").slider({
 		range: false,
 		min: 20,
 		max: 500,
