@@ -337,6 +337,9 @@ $(function () {
         { name: "The Honor Bar", area: "Beverly Hills", distance: 19, cuisine: "American Bar + Grill", price: "$$$", rating: 4.5, status: "Open", review: "Neighborhood bar with crisp salads, grilled plates, and fresh sides." , image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=520&q=80" },
         { name: "M Café", area: "Beverly Hills", distance: 18, cuisine: "Macrobiotic", price: "$$", rating: 4.4, status: "Open", review: "Plant-based macrobiotic plates, soba, and nutrient-dense bowls." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
         { name: "Culina Ristorante", area: "Beverly Hills", distance: 17, cuisine: "Mediterranean Italian", price: "$$$", rating: 4.5, status: "Open", review: "Seasonal Mediterranean ingredients, grilled fish, and garden salads." , image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=520&q=80" },
+        { name: "Gracias Madre", area: "West Hollywood", distance: 16, cuisine: "Plant-Based Mexican", price: "$$$", rating: 4.5, status: "Open", review: "Colorful vegan plates, fresh salsas, and a lively patio for visitors.", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Farmshop", area: "Brentwood", distance: 18, cuisine: "California Market Cafe", price: "$$$", rating: 4.4, status: "Open", review: "Seasonal salads, grain bowls, sandwiches, and artisan provisions.", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Ivy", area: "Beverly Hills", distance: 19, cuisine: "California American", price: "$$$$", rating: 4.3, status: "Open", review: "Iconic garden dining with polished service and a classic tourist-friendly scene.", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=520&q=80" },
         { name: "Coni'Seafood", area: "Inglewood", distance: 5, cuisine: "Nayarit Seafood", price: "$$", rating: 4.6, status: "Open", review: "Pescado zarandeado and caramelized onions.", image: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=520&q=80" },
         { name: "Jame Enoteca", area: "El Segundo", distance: 5, cuisine: "Italian", price: "$$$", rating: 4.7, status: "Open", review: "Arugula pappardelle and braised beef cheek.", image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=520&q=80" },
         { name: "Wolfgold", area: "LAX TBIT", distance: 0, cuisine: "Californian / Wood-Fired", price: "$$$", rating: 4.6, status: "Terminal", review: "Wood-fired pizza and seasonal salads airside.", image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=520&q=80" },
@@ -371,6 +374,34 @@ $(function () {
         $(".restaurant-filter").removeClass("active");
         $(this).addClass("active");
         renderRestaurants($(this).data("filter"));
+    });
+
+    const shoppingSpots = [
+        { name: "Abbot Kinney boutiques", area: "Abbot Kinney, Venice", type: "Independent fashion + vintage", detail: "Walkable blocks of California labels, denim, jewelry, and design shops.", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=700&q=80" },
+        { name: "Montana Avenue", area: "Montana Ave, Santa Monica", type: "Relaxed luxury + local style", detail: "A leafy neighborhood strip for contemporary clothes, accessories, and gifts.", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" },
+        { name: "Marina del Rey waterfront", area: "Marina del Rey", type: "Resort casual + beachwear", detail: "Easygoing coastal shopping for vacation clothes, sunglasses, and activewear.", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    function renderShopping(filter = "all") {
+        const list = document.getElementById("shoppingList");
+        if (!list) return;
+        const filtered = shoppingSpots.filter((spot) => filter === "all" || spot.area.includes(filter));
+        list.innerHTML = filtered.map((spot) => `
+            <article class="shopping-card">
+                <img class="shopping-photo" src="${spot.image}" alt="Clothing shopping at ${spot.name}" loading="lazy">
+                <div class="shopping-card-content">
+                    <div class="shopping-card-top"><span class="shopping-name">${spot.name}</span><i class="bi bi-bag shopping-icon" aria-hidden="true"></i></div>
+                    <div class="shopping-type">${spot.type}</div>
+                    <div class="shopping-detail">${spot.area} · ${spot.detail}</div>
+                </div>
+            </article>`).join("");
+    }
+
+    renderShopping();
+    $(document).on("click", ".shopping-filter", function () {
+        $(".shopping-filter").removeClass("active");
+        $(this).addClass("active");
+        renderShopping($(this).data("shopping-filter"));
     });
 });
 

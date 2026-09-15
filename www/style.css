@@ -100,6 +100,21 @@
 .restaurant-cuisine { margin: 4px 0 8px; }
 .restaurant-status { color: #2ed573; }
 
+.shopping-panel { max-height: 330px; overflow: hidden; }
+.shopping-filters { display: flex; gap: 6px; margin: 0 0 10px; overflow-x: auto; scrollbar-width: none; }
+.shopping-filters::-webkit-scrollbar { display: none; }
+.shopping-filter { min-height: 28px; padding: 4px 9px; border: 1px solid rgba(0, 170, 255, .25); border-radius: 999px; background: rgba(0, 170, 255, .06); color: rgba(255, 255, 255, .7); font-size: 9px; white-space: nowrap; }
+.shopping-filter.active, .shopping-filter:hover { border-color: #00AAFF; background: rgba(0, 170, 255, .18); color: #fff; }
+.shopping-list { display: grid; gap: 8px; max-height: 235px; overflow-y: auto; padding-right: 3px; }
+.shopping-card { display: flex; gap: 10px; padding: 8px; border: 1px solid rgba(255, 255, 255, .1); border-radius: 10px; background: linear-gradient(135deg, rgba(0, 170, 255, .1), rgba(255, 255, 255, .03)); }
+.shopping-photo { width: 54px; height: 54px; flex: 0 0 54px; object-fit: cover; border-radius: 7px; border: 1px solid rgba(255, 255, 255, .14); }
+.shopping-card-content { min-width: 0; flex: 1; }
+.shopping-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.shopping-name { color: #fff; font-size: 11px; font-weight: 700; }
+.shopping-icon { color: #00AAFF; font-size: 12px; }
+.shopping-type { margin: 4px 0; color: #00AAFF; font-size: 9px; }
+.shopping-detail { color: rgba(255, 255, 255, .58); font-size: 9px; line-height: 1.35; }
+
 body{
     background: #000000 !important;
     background-color: #000000 !important;
