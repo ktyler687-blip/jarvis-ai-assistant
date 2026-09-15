@@ -328,7 +328,7 @@ function canvasApp() {
 $(function () {
     const nearbyRestaurants = [
         { name: "Great White", area: "Venice", distance: 12, cuisine: "California Cafe", price: "$$", rating: 4.5, status: "Open", review: "Bright, produce-forward bowls, salads, and sourdough." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
-        { name: "Moon Juice", area: "Venice", distance: 12, cuisine: "Juice + Wellness Bar", price: "$$", rating: 4.4, status: "Open", review: "Adaptogenic smoothies, pressed juices, and plant-based snacks." , image: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=520&q=80" },
+        { name: "Moon Juice", area: "Abbot Kinney, Venice", distance: 12, cuisine: "Juice + Wellness Bar", price: "$$", rating: 4.4, status: "Open", review: "Adaptogenic smoothies, pressed juices, and plant-based snacks." , image: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=520&q=80" },
         { name: "The Butcher's Daughter", area: "Venice", distance: 13, cuisine: "Vegetarian", price: "$$", rating: 4.5, status: "Open", review: "Vegetable-forward brunch, fresh juices, and colorful grain bowls." , image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
         { name: "Blue Bottle Coffee", area: "Venice", distance: 13, cuisine: "Coffee + Light Bites", price: "$$", rating: 4.4, status: "Open", review: "Carefully brewed coffee with wholesome pastries and toast." , image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=520&q=80" },
         { name: "Greenleaf Kitchen & Cocktails", area: "Marina del Rey", distance: 10, cuisine: "Healthy California", price: "$$", rating: 4.4, status: "Open", review: "Custom salads, wraps, protein bowls, and fresh juices by the marina." , image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" },
@@ -350,7 +350,7 @@ $(function () {
             filter === "terminal" ? restaurant.status === "Terminal" :
             filter === "nearby" ? restaurant.distance <= 5 :
             filter === "healthy" ? /healthy|vegetarian|macrobiotic|wellness|organic|juice|coffee/i.test(`${restaurant.cuisine} ${restaurant.review}`) :
-            filter === "westside" ? /Venice|Marina del Rey|Beverly Hills/i.test(restaurant.area) : true
+            filter === "westside" ? /Venice|Marina del Rey|Beverly Hills|Santa Monica/i.test(restaurant.area) : true
         );
         list.innerHTML = filtered.map((restaurant) => `
             <article class="restaurant-card">
