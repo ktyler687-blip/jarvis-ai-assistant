@@ -327,12 +327,20 @@ function canvasApp() {
 
 $(function () {
     const nearbyRestaurants = [
-        { name: "Coni'Seafood", area: "Inglewood", distance: 5, cuisine: "Nayarit Seafood", price: "$$", rating: 4.6, status: "Open", review: "Pescado zarandeado and caramelized onions." },
-        { name: "Jame Enoteca", area: "El Segundo", distance: 5, cuisine: "Italian", price: "$$$", rating: 4.7, status: "Open", review: "Arugula pappardelle and braised beef cheek." },
-        { name: "Wolfgold", area: "LAX TBIT", distance: 0, cuisine: "Californian / Wood-Fired", price: "$$$", rating: 4.6, status: "Terminal", review: "Wood-fired pizza and seasonal salads airside." },
-        { name: "Honeybird", area: "LAX Terminal 4", distance: 0, cuisine: "Fried Chicken", price: "$$", rating: 4.4, status: "Terminal", review: "Premium chicken sandwiches and waffle fries." },
-        { name: "Playa Provisions", area: "Playa del Rey", distance: 8, cuisine: "Multi-Concept", price: "$$", rating: 4.5, status: "Open", review: "Four concepts from chef Brooke Williamson." },
-        { name: "Carnitas El Artista", area: "Inglewood", distance: 8, cuisine: "Mexican", price: "$", rating: 4.7, status: "Open", review: "Michoacán-style carnitas and chilaquiles." }
+        { name: "Great White", area: "Venice", distance: 12, cuisine: "California Cafe", price: "$$", rating: 4.5, status: "Open", review: "Bright, produce-forward bowls, salads, and sourdough." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Moon Juice", area: "Venice", distance: 12, cuisine: "Juice + Wellness Bar", price: "$$", rating: 4.4, status: "Open", review: "Adaptogenic smoothies, pressed juices, and plant-based snacks." , image: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Butcher's Daughter", area: "Venice", distance: 13, cuisine: "Vegetarian", price: "$$", rating: 4.5, status: "Open", review: "Vegetable-forward brunch, fresh juices, and colorful grain bowls." , image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
+        { name: "Blue Bottle Coffee", area: "Venice", distance: 13, cuisine: "Coffee + Light Bites", price: "$$", rating: 4.4, status: "Open", review: "Carefully brewed coffee with wholesome pastries and toast." , image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=520&q=80" },
+        { name: "Greenleaf Kitchen & Cocktails", area: "Marina del Rey", distance: 10, cuisine: "Healthy California", price: "$$", rating: 4.4, status: "Open", review: "Custom salads, wraps, protein bowls, and fresh juices by the marina." , image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" },
+        { name: "Bluewater Grill", area: "Marina del Rey", distance: 10, cuisine: "Sustainable Seafood", price: "$$$", rating: 4.5, status: "Open", review: "Fresh seafood, grilled fish, and lighter coastal plates." , image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=520&q=80" },
+        { name: "Erewhon", area: "Marina del Rey", distance: 9, cuisine: "Organic Market + Cafe", price: "$$$", rating: 4.3, status: "Open", review: "Organic prepared meals, smoothies, and clean-ingredient snacks." , image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Honor Bar", area: "Beverly Hills", distance: 19, cuisine: "American Bar + Grill", price: "$$$", rating: 4.5, status: "Open", review: "Neighborhood bar with crisp salads, grilled plates, and fresh sides." , image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=520&q=80" },
+        { name: "M Café", area: "Beverly Hills", distance: 18, cuisine: "Macrobiotic", price: "$$", rating: 4.4, status: "Open", review: "Plant-based macrobiotic plates, soba, and nutrient-dense bowls." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Culina Ristorante", area: "Beverly Hills", distance: 17, cuisine: "Mediterranean Italian", price: "$$$", rating: 4.5, status: "Open", review: "Seasonal Mediterranean ingredients, grilled fish, and garden salads." , image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=520&q=80" },
+        { name: "Coni'Seafood", area: "Inglewood", distance: 5, cuisine: "Nayarit Seafood", price: "$$", rating: 4.6, status: "Open", review: "Pescado zarandeado and caramelized onions.", image: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=520&q=80" },
+        { name: "Jame Enoteca", area: "El Segundo", distance: 5, cuisine: "Italian", price: "$$$", rating: 4.7, status: "Open", review: "Arugula pappardelle and braised beef cheek.", image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=520&q=80" },
+        { name: "Wolfgold", area: "LAX TBIT", distance: 0, cuisine: "Californian / Wood-Fired", price: "$$$", rating: 4.6, status: "Terminal", review: "Wood-fired pizza and seasonal salads airside.", image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=520&q=80" },
+        { name: "Playa Provisions", area: "Playa del Rey", distance: 8, cuisine: "Multi-Concept", price: "$$", rating: 4.5, status: "Open", review: "Four concepts from chef Brooke Williamson.", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" }
     ];
 
     function renderRestaurants(filter = "all") {
@@ -340,16 +348,21 @@ $(function () {
         if (!list) return;
         const filtered = nearbyRestaurants.filter((restaurant) =>
             filter === "terminal" ? restaurant.status === "Terminal" :
-            filter === "nearby" ? restaurant.distance <= 5 : true
+            filter === "nearby" ? restaurant.distance <= 5 :
+            filter === "healthy" ? /healthy|vegetarian|macrobiotic|wellness|organic|juice|coffee/i.test(`${restaurant.cuisine} ${restaurant.review}`) :
+            filter === "westside" ? /Venice|Marina del Rey|Beverly Hills/i.test(restaurant.area) : true
         );
         list.innerHTML = filtered.map((restaurant) => `
             <article class="restaurant-card">
-                <div class="restaurant-card-top">
-                    <span class="restaurant-name">${restaurant.name}</span>
-                    <span class="restaurant-rating">${restaurant.rating} <i class="bi bi-star-fill"></i></span>
+                <img class="restaurant-photo" src="${restaurant.image}" alt="${restaurant.name} food" loading="lazy">
+                <div class="restaurant-card-content">
+                    <div class="restaurant-card-top">
+                        <span class="restaurant-name">${restaurant.name}</span>
+                        <span class="restaurant-rating">${restaurant.rating} <i class="bi bi-star-fill"></i></span>
+                    </div>
+                    <div class="restaurant-cuisine">${restaurant.cuisine} · ${restaurant.price}</div>
+                    <div class="restaurant-card-meta"><span>${restaurant.area} · ${restaurant.distance === 0 ? "In terminal" : `${restaurant.distance} mi`}</span><span class="restaurant-status">${restaurant.status}</span></div>
                 </div>
-                <div class="restaurant-cuisine">${restaurant.cuisine} · ${restaurant.price}</div>
-                <div class="restaurant-card-meta"><span>${restaurant.area} · ${restaurant.distance === 0 ? "In terminal" : `${restaurant.distance} mi`}</span><span class="restaurant-status">${restaurant.status}</span></div>
             </article>`).join("");
     }
 
