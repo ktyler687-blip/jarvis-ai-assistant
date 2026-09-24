@@ -326,7 +326,95 @@ function canvasApp() {
 
 
 $(function () {
-	$("#slider-range").slider({
+    const nearbyRestaurants = [
+        { name: "Gjelina", area: "Abbot Kinney, Venice", distance: 13, cuisine: "Produce-Forward American", price: "$$$", rating: 4.5, status: "Open", review: "A destination for seasonal vegetables, wood-fired dishes, and a lively Abbot Kinney patio." , image: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=520&q=80" },
+        { name: "San Damian", area: "Abbot Kinney, Venice", distance: 13, cuisine: "Mexican Coastal Seafood", price: "$$$", rating: 4.4, status: "Open", review: "Contemporary seafood inspired by the Mexican coast, right in the Abbot Kinney dining corridor." , image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=520&q=80" },
+        { name: "Sweetfin", area: "Abbot Kinney, Venice", distance: 13, cuisine: "Poke + Protein Bowls", price: "$$", rating: 4.4, status: "Open", review: "Gluten-free poke and protein bowls with fresh toppings for a quick, lighter meal." , image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" },
+        { name: "Café Gratitude", area: "Rose Ave, Venice", distance: 14, cuisine: "Plant-Based", price: "$$", rating: 4.4, status: "Open", review: "Plant-based bowls, juices, and nourishing comfort food near the Venice beach neighborhoods." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Farmshop", area: "Brentwood", distance: 18, cuisine: "California Market Cafe", price: "$$$", rating: 4.4, status: "Open", review: "Seasonal salads, grain bowls, sandwiches, and artisan provisions at Brentwood Country Mart." , image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
+        { name: "Kreation Organic", area: "Beverly Hills", distance: 19, cuisine: "Organic Cafe + Juice", price: "$$", rating: 4.3, status: "Open", review: "Cold-pressed juices, smoothies, salads, and clean-ingredient meals for wellness-minded travelers." , image: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=520&q=80" },
+        { name: "Gracias Madre", area: "West Hollywood", distance: 16, cuisine: "Plant-Based Mexican", price: "$$$", rating: 4.5, status: "Open", review: "Colorful vegan plates, fresh salsas, and a lively patio in West Hollywood." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Win-Dow", area: "Marina del Rey", distance: 10, cuisine: "Burgers + Beach Food", price: "$$", rating: 4.5, status: "Open", review: "Casual smash burgers, crispy chicken, and fries for an easy Marina del Rey stop." , image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Great White", area: "Venice", distance: 12, cuisine: "California Cafe", price: "$$", rating: 4.5, status: "Open", review: "Bright, produce-forward bowls, salads, and sourdough." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Moon Juice", area: "Abbot Kinney, Venice", distance: 12, cuisine: "Juice + Wellness Bar", price: "$$", rating: 4.4, status: "Open", review: "Adaptogenic smoothies, pressed juices, and plant-based snacks." , image: "https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Butcher's Daughter", area: "Venice", distance: 13, cuisine: "Vegetarian", price: "$$", rating: 4.5, status: "Open", review: "Vegetable-forward brunch, fresh juices, and colorful grain bowls." , image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
+        { name: "Blue Bottle Coffee", area: "Venice", distance: 13, cuisine: "Coffee + Light Bites", price: "$$", rating: 4.4, status: "Open", review: "Carefully brewed coffee with wholesome pastries and toast." , image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=520&q=80" },
+        { name: "Greenleaf Kitchen & Cocktails", area: "Marina del Rey", distance: 10, cuisine: "Healthy California", price: "$$", rating: 4.4, status: "Open", review: "Custom salads, wraps, protein bowls, and fresh juices by the marina." , image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" },
+        { name: "Bluewater Grill", area: "Marina del Rey", distance: 10, cuisine: "Sustainable Seafood", price: "$$$", rating: 4.5, status: "Open", review: "Fresh seafood, grilled fish, and lighter coastal plates." , image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=520&q=80" },
+        { name: "Erewhon", area: "Marina del Rey", distance: 9, cuisine: "Organic Market + Cafe", price: "$$$", rating: 4.3, status: "Open", review: "Organic prepared meals, smoothies, and clean-ingredient snacks." , image: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Honor Bar", area: "Beverly Hills", distance: 19, cuisine: "American Bar + Grill", price: "$$$", rating: 4.5, status: "Open", review: "Neighborhood bar with crisp salads, grilled plates, and fresh sides." , image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=520&q=80" },
+        { name: "M Café", area: "Beverly Hills", distance: 18, cuisine: "Macrobiotic", price: "$$", rating: 4.4, status: "Open", review: "Plant-based macrobiotic plates, soba, and nutrient-dense bowls." , image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Culina Ristorante", area: "Beverly Hills", distance: 17, cuisine: "Mediterranean Italian", price: "$$$", rating: 4.5, status: "Open", review: "Seasonal Mediterranean ingredients, grilled fish, and garden salads." , image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=520&q=80" },
+        { name: "Gracias Madre", area: "West Hollywood", distance: 16, cuisine: "Plant-Based Mexican", price: "$$$", rating: 4.5, status: "Open", review: "Colorful vegan plates, fresh salsas, and a lively patio for visitors.", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=520&q=80" },
+        { name: "Farmshop", area: "Brentwood", distance: 18, cuisine: "California Market Cafe", price: "$$$", rating: 4.4, status: "Open", review: "Seasonal salads, grain bowls, sandwiches, and artisan provisions.", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=520&q=80" },
+        { name: "The Ivy", area: "Beverly Hills", distance: 19, cuisine: "California American", price: "$$$$", rating: 4.3, status: "Open", review: "Iconic garden dining with polished service and a classic tourist-friendly scene.", image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=520&q=80" },
+        { name: "Coni'Seafood", area: "Inglewood", distance: 5, cuisine: "Nayarit Seafood", price: "$$", rating: 4.6, status: "Open", review: "Pescado zarandeado and caramelized onions.", image: "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=520&q=80" },
+        { name: "Jame Enoteca", area: "El Segundo", distance: 5, cuisine: "Italian", price: "$$$", rating: 4.7, status: "Open", review: "Arugula pappardelle and braised beef cheek.", image: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=520&q=80" },
+        { name: "Wolfgold", area: "LAX TBIT", distance: 0, cuisine: "Californian / Wood-Fired", price: "$$$", rating: 4.6, status: "Terminal", review: "Wood-fired pizza and seasonal salads airside.", image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=520&q=80" },
+        { name: "Playa Provisions", area: "Playa del Rey", distance: 8, cuisine: "Multi-Concept", price: "$$", rating: 4.5, status: "Open", review: "Four concepts from chef Brooke Williamson.", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=520&q=80" }
+    ];
+
+    function renderRestaurants(filter = "all") {
+        const list = document.getElementById("restaurantList");
+        if (!list) return;
+        const filtered = nearbyRestaurants.filter((restaurant) =>
+            filter === "terminal" ? restaurant.status === "Terminal" :
+            filter === "nearby" ? restaurant.distance <= 5 :
+            filter === "healthy" ? /healthy|vegetarian|macrobiotic|wellness|organic|juice|coffee/i.test(`${restaurant.cuisine} ${restaurant.review}`) :
+            filter === "westside" ? /Venice|Marina del Rey|Beverly Hills|Santa Monica/i.test(restaurant.area) : true
+        );
+        list.innerHTML = filtered.map((restaurant) => `
+            <article class="restaurant-card">
+                <img class="restaurant-photo" src="${restaurant.image}" alt="${restaurant.name} food" loading="lazy">
+                <div class="restaurant-card-content">
+                    <div class="restaurant-card-top">
+                        <span class="restaurant-name">${restaurant.name}</span>
+                        <span class="restaurant-rating">${restaurant.rating} <i class="bi bi-star-fill"></i></span>
+                    </div>
+                    <div class="restaurant-cuisine">${restaurant.cuisine} · ${restaurant.price}</div>
+                    <div class="restaurant-card-meta"><span>${restaurant.area} · ${restaurant.distance === 0 ? "In terminal" : `${restaurant.distance} mi`}</span><span class="restaurant-status">${restaurant.status}</span></div>
+                </div>
+            </article>`).join("");
+    }
+
+    renderRestaurants();
+    $(document).on("click", ".restaurant-filter", function () {
+        $(".restaurant-filter").removeClass("active");
+        $(this).addClass("active");
+        renderRestaurants($(this).data("filter"));
+    });
+
+    const shoppingSpots = [
+        { name: "Abbot Kinney boutiques", area: "Abbot Kinney, Venice", type: "Independent fashion + vintage", detail: "Walkable blocks of California labels, denim, jewelry, and design shops.", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=700&q=80" },
+        { name: "Montana Avenue", area: "Montana Ave, Santa Monica", type: "Relaxed luxury + local style", detail: "A leafy neighborhood strip for contemporary clothes, accessories, and gifts.", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80" },
+        { name: "Marina del Rey waterfront", area: "Marina del Rey", type: "Resort casual + beachwear", detail: "Easygoing coastal shopping for vacation clothes, sunglasses, and activewear.", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" }
+    ];
+
+    function renderShopping(filter = "all") {
+        const list = document.getElementById("shoppingList");
+        if (!list) return;
+        const filtered = shoppingSpots.filter((spot) => filter === "all" || spot.area.includes(filter));
+        list.innerHTML = filtered.map((spot) => `
+            <article class="shopping-card">
+                <img class="shopping-photo" src="${spot.image}" alt="Clothing shopping at ${spot.name}" loading="lazy">
+                <div class="shopping-card-content">
+                    <div class="shopping-card-top"><span class="shopping-name">${spot.name}</span><i class="bi bi-bag shopping-icon" aria-hidden="true"></i></div>
+                    <div class="shopping-type">${spot.type}</div>
+                    <div class="shopping-detail">${spot.area} · ${spot.detail}</div>
+                </div>
+            </article>`).join("");
+    }
+
+    renderShopping();
+    $(document).on("click", ".shopping-filter", function () {
+        $(".shopping-filter").removeClass("active");
+        $(this).addClass("active");
+        renderShopping($(this).data("shopping-filter"));
+    });
+});
+
+$(function () {
+    $("#slider-range").slider({
 		range: false,
 		min: 20,
 		max: 500,
